@@ -18,6 +18,10 @@ export class SignUpController implements Controller {
         }
       }
 
+      if (httpRequest.body.password !== httpRequest.body.passwordConfirmation) {
+        return badRequest(new InvalidParamError('passwordConfirmation'))
+      }
+
       // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
       const isValid = this.emailValidator.isValid(httpRequest.body.email)
       if (!isValid) {
