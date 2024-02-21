@@ -1,4 +1,4 @@
 import config from './jest.config'
 
-config.testMatch = ['**/*.unit.spec.ts']
+config.testMatch = ['**/*.spec.ts']
 module.exports = config
