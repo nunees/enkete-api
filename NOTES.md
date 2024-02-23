@@ -1,0 +1,3 @@
+- In order to use mongo in memory test we need to install libcripto.so.1.1
+- To search for this lib use: `yum provides */libcrypto.so.1.1`
+- This lib can be installed using: `sudo dnf install openssl1.1-1:1.1.1q-5.fc39.x86_64` on fedora
