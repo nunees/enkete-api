@@ -1,4 +1,4 @@
-import { MissingParamError } from "../../errors";
+import { InvalidParamError, MissingParamError } from "../../errors";
 import { badRequest } from "../../helpers/http-helper";
 import { type HttpRequest, type HttpResponse, type Controller } from "../../protocols";
 import { type EmailValidator } from "../signup/signup-protocols";
@@ -21,7 +21,10 @@ export class LoginController implements Controller {
     const { email } = httpRequest.body
 
     // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-    this.emailValidator.isValid(email)
+    const isValid = this.emailValidator.isValid(email)
+    if (!isValid) {
+      return new Promise(resolve => resolve(badRequest(new InvalidParamError('email'))))
+    }
 
     return new Promise(resolve => resolve({ statusCode: 500, body: 'any_token' }))
   }
