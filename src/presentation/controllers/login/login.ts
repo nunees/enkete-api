@@ -11,15 +11,14 @@ export class LoginController implements Controller {
   }
 
   async handle (httpRequest: HttpRequest): Promise<HttpResponse> {
-    if (!httpRequest.body.email) {
+    const { email, password } = httpRequest.body
+
+    if (!email) {
       return new Promise(resolve => resolve(badRequest(new MissingParamError('email'))))
     }
-    if (!httpRequest.body.password) {
+    if (!password) {
       return new Promise(resolve => resolve(badRequest(new MissingParamError('password'))))
     }
-
-    const { email } = httpRequest.body
-
     // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     const isValid = this.emailValidator.isValid(email)
     if (!isValid) {
