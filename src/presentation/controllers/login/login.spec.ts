@@ -1,4 +1,4 @@
-import { badRequest, serverError } from "../../helpers/http-helper"
+import { badRequest, serverError, unauthorized } from "../../helpers/http-helper"
 import { InvalidParamError, MissingParamError } from "../../errors"
 import { LoginController } from "./login"
 import { type HttpRequest, type EmailValidator } from "../signup/signup-protocols"
@@ -97,5 +97,17 @@ describe('Login Controller', () => {
     const authpy = jest.spyOn(authenticationStub, 'auth')
     await sut.handle(makeFakeRequest())
     expect(authpy).toHaveBeenCalledWith('any_email@email.com', 'any_password')
+  })
+
+  /*
+   * Erro 403 - Significa que o usuário é conhecido, mas não tem permissão para acessar o recurso
+   * Erro 401 - Não conhece o usuário
+  */
+
+  test('Should return 401 if invalid credentials are provided', async () => {
+    const { sut, authenticationStub } = makeSut()
+    jest.spyOn(authenticationStub, 'auth').mockReturnValueOnce(new Promise(resolve => resolve("")))
+    const httpResponse = await sut.handle(makeFakeRequest())
+    expect(httpResponse).toEqual(unauthorized())
   })
 })
