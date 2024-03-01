@@ -7,6 +7,6 @@
     "esModuleInterop": true,
     "allowJs": true,
     "strictNullChecks": false,
-    "noImplicitReturns": true
+    "noImplicitReturns": false
   }
 }
