@@ -28,7 +28,7 @@ export class LoginController implements Controller {
       }
 
       // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-      const accessToken = await this.authentication.auth(email, password)
+      const accessToken = await this.authentication.auth({ email, password })
       if (!accessToken) {
         return unauthorized()
       }
