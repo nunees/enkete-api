@@ -20,7 +20,8 @@ const makeFakeAccount = (): AccountModel => ({
   id: 'valid_id',
   name: 'valid_name',
   email: 'valid_email',
-  password: 'hashed_password'
+  password: 'hashed_password',
+  accessToken: 'valid_token'
 })
 
 const makeFakeAccountData = (): AddAccountModel => ({
