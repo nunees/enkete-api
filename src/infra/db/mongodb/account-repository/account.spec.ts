@@ -1,8 +1,6 @@
-
 import { Collection } from "mongodb"
 import { MongoHelper } from "../helpers/mongo-helper"
 import { AccountMongoRepository } from "./account"
-import { response } from "express"
 
 let accountCollection: Collection = null
 
