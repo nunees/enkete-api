@@ -1,0 +1,41 @@
+version: "3"
+services:
+  mongo:
+    image: mongo:3.6
+    container_name: mongo
+    restart: always
+    ports:
+      - 27017:27017
+    volumes:
+      - ./data:/data/db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.50"
+          memory: 512M
+        reservations:
+          cpus: "0.25"
+          memory: 256M
+
+  api:
+    container_name: enkete-api
+    build: .
+    image: enkete-api
+    restart: always
+    links:
+      - mongo
+    ports:
+      - 3000:3000
+    volumes:
+      - ./dist:/usr/src/enkete-api/dist
+    depends_on:
+      - mongo
+    command: npm start
+    deploy:
+      resources:
+        limits:
+          cpus: "0.50"
+          memory: 512M
+        reservations:
+          cpus: "0.25"
+          memory: 256M
