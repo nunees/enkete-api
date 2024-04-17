@@ -1,7 +1,7 @@
 {
   "extends": "standard-with-typescript",
   "parserOptions": {
-    "project": "./tsconfig.json"
+    "project": "./tsconfig.eslint.json"
   },
   "rules": {
     "@typescript-eslint/strict-boolean-expressions": "off",
@@ -19,6 +19,7 @@
     "@typescript-eslint/no-confusing-void-expression": "off",
     "@typescript-eslint/unbound-method": "off",
     "@typescript-eslint/no-unused-vars": "off",
+    "node/no-path-concat": "off",
     "import/export": "off"
   }
 }
