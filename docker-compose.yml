@@ -26,11 +26,13 @@ services:
       - mongo
     ports:
       - 3000:3000
+      - 9222:9222
     volumes:
       - ./dist:/usr/src/enkete-api/dist
+      - ./package.json:/usr/src/enkete-api/package.json
     depends_on:
       - mongo
-    command: npm start
+    command: npm run debug --unhandled-rejections=strict
     deploy:
       resources:
         limits:
