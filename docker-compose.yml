@@ -19,8 +19,8 @@ services:
 
   api:
     container_name: enkete-api
-    build: .
-    image: enkete-api
+    image: node:12
+    working_dir: /usr/src/enkete-api
     restart: always
     links:
       - mongo
@@ -32,7 +32,7 @@ services:
       - ./package.json:/usr/src/enkete-api/package.json
     depends_on:
       - mongo
-    command: npm run debug --unhandled-rejections=strict
+    command: bash -c "npm install --only=prod && npm run debug"
     deploy:
       resources:
         limits:
