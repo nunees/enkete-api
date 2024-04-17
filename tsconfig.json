@@ -3,6 +3,7 @@
     "outDir": "dist",
     "module": "CommonJS",
     "target": "ES2019",
+    "rootDir": "src",
     "esModuleInterop": true,
     "strictNullChecks": false,
     "noImplicitReturns": false,
